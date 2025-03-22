@@ -1,8 +1,18 @@
 import React, { ReactNode } from "react";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], 
+  display: "swap", 
+});
+
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-neutral-950 text-white">
+    <div className={`relative min-h-screen w-full overflow-hidden bg-neutral-950 text-white  ${poppins.className}  `}>
+      
       <img
         src="/blob-scene-haikei.svg"
         alt="Background"
@@ -17,6 +27,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 max-w-6xl">
      
           <div className="flex md:hidden w-full flex-col gap-6 text-center mb-8">
+            
             <div className="space-y-2">
               <h1 className="text-4xl font-black tracking-tight text-white">
                 Ace<span className="text-green-400 italic">Mock</span>
@@ -56,7 +67,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
               </span> 
               mock sessions.
             </p>
-            <div className="flex space-x-4 text-sm text-neutral-400">
+            <div className="flex space-x-2 text-sm text-neutral-400">
               <div className="flex items-center">
                 <div className="w-1 h-1 rounded-full bg-green-400 mr-2"></div>
                 <span>Real-time feedback</span>
