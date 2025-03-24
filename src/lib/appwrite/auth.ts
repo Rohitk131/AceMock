@@ -23,6 +23,15 @@ const handleAppwriteError = (error: any) => {
    };
 };
 
+const handleVerification = async() => {
+    try{
+        const promise = await account.createVerification('http://localhost:3000/dashboard'); 
+        console.log("Verfication Complete", promise); 
+    }
+    catch(error){
+        console.error('Verification Problem: ', error); 
+    }
+}
 const handleSignup = async ({email, password, name}:User) => {
        try {
            const user = await account.create(
@@ -53,4 +62,4 @@ const handleSignin = async ({email, password}: User) => {
    }
 }
 
-export {handleSignin, handleSignup};
+export {handleSignin, handleSignup, handleVerification};

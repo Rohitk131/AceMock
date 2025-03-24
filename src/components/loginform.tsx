@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 import { handleSignin } from "@/lib/appwrite/auth";
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,8 +21,13 @@ const LoginForm: React.FC = () => {
       const result = await handleSignin({email, password});
       
       if (result.success) {
-        console.log("Login successful");
-        redirect(`/dashboard`);
+        // Check if email is verified
+        if (result.isVerified) {
+          console.log("Login successful");
+          router.push('/dashboard');
+        } else {
+          setError("Please verify your email before signing in. Check your inbox for a verification link.");
+        }
       } else {
         setError(result.message);
         

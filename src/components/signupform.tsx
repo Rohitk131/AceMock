@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "@/components/Button";
 import Link from 'next/link'
-import { handleSignup } from "@/lib/appwrite/auth";
+import { handleSignup, handleVerification } from "@/lib/appwrite/auth";
 
 const SignUpForm: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -15,6 +15,7 @@ const SignUpForm: React.FC = () => {
       try {
         await handleSignup({email, password, name});
         console.log("Signup successful");
+        handleVerification(); 
       } catch (error) {
         console.error("Signup failed:", error);
       }
