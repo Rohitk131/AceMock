@@ -28,8 +28,8 @@ const Navbar = () => {
         >
           <Settings className="w-5 h-5 text-green-400" />
         </motion.button>
-        <Image
-          src="/avatar.png"
+        <img
+          src='https://fiverr-res.cloudinary.com/image/upload/c_limit,f_auto,q_auto,t_smartwm,w_500/v1/attachments/delivery/asset/8056935f732218218d2cc588916c6676-1694818112/JPEG%20%28with%20fade%20but%20filled%29.jpg'
           alt="avatar"
           width={36}
           height={36}
