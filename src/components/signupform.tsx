@@ -1,8 +1,25 @@
+'use client'; 
 import React from "react";
+import { useState } from "react";
 import { Button } from "@/components/Button";
 import Link from 'next/link'
+import { handleSignup } from "@/lib/appwrite/auth";
 
 const SignUpForm: React.FC = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState(""); 
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault(); 
+      try {
+        await handleSignup({email, password, name});
+        console.log("Signup successful");
+      } catch (error) {
+        console.error("Signup failed:", error);
+      }
+    };
+  
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="rounded-2xl border border-neutral-800 bg-[#121212] p-6 sm:p-8 shadow-2xl">
@@ -42,7 +59,7 @@ const SignUpForm: React.FC = () => {
 
         <div className="my-4 text-center text-sm text-neutral-400">or</div>
 
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <label htmlFor="name" className="text-sm text-neutral-400">
             <span className="mb-1.5 block font-medium">Name</span>
             <input
@@ -51,6 +68,8 @@ const SignUpForm: React.FC = () => {
               placeholder="Enter your full name"
               className="w-full rounded-md bg-[#171717] px-3 py-2.5 text-base text-[#737373] outline outline-1 outline-neutral-400/25 focus:outline-neutral-400/70 dark:bg-neutral-900 dark:text-white dark:outline-neutral-800 dark:focus:outline-neutral-600"
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </label>
 
@@ -62,6 +81,8 @@ const SignUpForm: React.FC = () => {
               placeholder="Enter your email address"
               className="w-full rounded-md bg-[#171717] px-3 py-2.5 text-base text-[#737373] outline outline-1 outline-neutral-400/25 focus:outline-neutral-400/70 dark:bg-neutral-900 dark:text-white dark:outline-neutral-800 dark:focus:outline-neutral-600"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
 
@@ -73,6 +94,8 @@ const SignUpForm: React.FC = () => {
               placeholder="Create a password"
               className="w-full rounded-md bg-[#171717] px-3 py-2.5 text-base text-[#737373] outline outline-1 outline-neutral-400/25 focus:outline-neutral-400/70 dark:bg-neutral-900 dark:text-white dark:outline-neutral-800 dark:focus:outline-neutral-600"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
 

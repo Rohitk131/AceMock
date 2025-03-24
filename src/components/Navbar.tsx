@@ -9,10 +9,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 w-full px-4 py-3 glass-panel border-b border-white/10 backdrop-blur-lg flex justify-between items-center">
+    <div className="sticky top-0 z-50 w-full px-4 py-3 glass-panel border-b border-white/10 backdrop-blur-lg flex justify-between items-center bg-white/10">
     
       <div className="flex items-center gap-3">
-        <Image src="/logo.png" alt="logo" width={40} height={40} className="" />
+        <Image src="/logo.png" alt="logo" width={50} height={50} className="" />
         <h1 className="text-xl font-black tracking-tight text-white">
           Ace<span className="text-green-400 italic">Mock</span>
           <span className="text-green-400 animate-pulse">.</span>

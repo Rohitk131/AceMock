@@ -84,7 +84,7 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
           </div>
 
           <div className="w-full md:w-7/12 flex justify-center">
-            <div className="w-full max-w-md backdrop-blur-sm bg-black/30 p-4 rounded-2xl border border-white/10 shadow-xl">
+            <div className="w-full max-w-md backdrop-blur-sm bg-white/5 p-4 rounded-2xl border border-white/10 shadow-xl">
               {children}
             </div>
           </div>
