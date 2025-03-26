@@ -2,7 +2,7 @@
 import { motion } from "framer-motion"
 import { Inter, Playfair_Display } from "next/font/google"
 import { cn } from "@/lib/utils"
-
+import GradientButton from '@/components/GradientButton'
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -184,9 +184,9 @@ export default function HeroGeometric() {
 
           <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible">
             <div className="flex justify-center space-x-4">
-              <button className="px-8 py-3 bg-gradient-to-r from-indigo-500 to-rose-500 text-white rounded-full text-lg font-semibold hover:scale-105 transition-transform">
+              <GradientButton className="px-8 py-3  text-lg font-semibold hover:scale-105 transition-transform">
                 Start Practicing
-              </button>
+              </GradientButton>
               <button className="px-8 py-3 bg-white/[0.05] border border-white/[0.2] text-white rounded-full text-lg font-semibold hover:bg-white/[0.1] transition-colors">
                 Learn More
               </button>
