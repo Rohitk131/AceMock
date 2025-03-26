@@ -1,83 +1,103 @@
 "use client";
 
-import React, { useState } from "react";
-import { Settings, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const navItems = [
+    { label: "Features", href: "#features" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Pricing", href: "#pricing" }
+  ];
 
   return (
-    <div className="sticky top-0 z-50 w-2/3 mx-auto  rounded-full  m-2 px-4 py-3 glass-panel border border-white/10 backdrop-blur-sm flex justify-between items-center bg-white/5  ">
-    
-      <div className="flex items-center gap-3">
-        <Image src="/logo.png" alt="logo" width={50} height={50} className="" />
-        <h1 className="text-xl font-black tracking-tight text-white">
-          Ace<span className="text-green-400 italic">Mock</span>
-          <span className="text-green-400 animate-pulse">.</span>
-        </h1>
-      </div>
-
- 
-      <div className="hidden md:flex items-center gap-4">
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-        >
-          <Settings className="w-5 h-5 text-green-400" />
-        </motion.button>
-        <img
-          src='https://fiverr-res.cloudinary.com/image/upload/c_limit,f_auto,q_auto,t_smartwm,w_500/v1/attachments/delivery/asset/8056935f732218218d2cc588916c6676-1694818112/JPEG%20%28with%20fade%20but%20filled%29.jpg'
-          alt="avatar"
-          width={36}
-          height={36}
-          className="rounded-full border border-white/20 hover:scale-105 transition-transform"
-        />
-      </div>
-
-     
-      <div className="md:hidden">
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-        >
-          {isOpen ? <X className="text-green-400 w-5 h-5" /> : <Menu className="text-green-400 w-5 h-5" />}
-        </motion.button>
-      </div>
-
-
-      <AnimatePresence>
-        {isOpen && (
+    <nav className={cn(
+      "fixed top-0 left-0 right-0 z-50 w-full",
+      "bg-transparent py-4 px-6 md:px-12"
+    )}>
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2">
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="absolute top-full left-0 w-full glass-panel border-t border-white/10 backdrop-blur-lg p-4 flex flex-col gap-3 md:hidden"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2 p-2 rounded bg-white/10 hover:bg-white/20 transition-colors"
+            initial={{ opacity: 0, rotate: -20 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gradient-to-br from-indigo-400 to-rose-400 w-8 h-8 rounded-lg"
+          />
+          <span className={cn(
+            "text-xl font-bold tracking-tight",
+            "bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
+          )}>
+            AceMock
+          </span>
+        </Link>
+
+        {/* Navigation Links */}
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item, index) => (
+            <motion.div
+              key={item.href}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1 
+              }}
             >
-              <Settings className="w-5 h-5 text-green-400" />
-              <span className="text-white">Settings</span>
-            </motion.button>
-            <div className="flex items-center gap-2">
-              <Image
-                src="/avatar.png"
-                alt="avatar"
-                width={36}
-                height={36}
-                className="rounded-full border border-white/20"
-              />
-              <span className="text-white font-medium">Your Profile</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+              <Link 
+                href={item.href} 
+                className={cn(
+                  "text-sm font-medium",
+                  "text-white/60 hover:text-white",
+                  "transition-colors duration-300"
+                )}
+              >
+                {item.label}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex items-center space-x-4">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(
+              "hidden md:block",
+              "px-4 py-2 rounded-full",
+              "bg-white/[0.05] border border-white/[0.1]",
+              "text-sm font-medium text-white",
+              "hover:bg-white/[0.1] transition-colors"
+            )}
+          >
+            Log In
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(
+              "px-6 py-2 rounded-full",
+              "bg-gradient-to-r from-indigo-500 to-rose-500",
+              "text-sm font-semibold text-white",
+              "shadow-lg shadow-indigo-500/30",
+              "hover:brightness-110 transition-all"
+            )}
+          >
+            Get Started
+          </motion.button>
+        </div>
+      </div>
+    </nav>
   );
 };
 
