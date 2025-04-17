@@ -8,6 +8,7 @@ const inter = Inter({
   variable: "--font-inter",
 })
 
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
