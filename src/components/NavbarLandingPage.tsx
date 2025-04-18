@@ -3,13 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import GradientButton from "./GradientButton";
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-inter",
+// });
 
 const Navbar = () => {
   const navItems = [

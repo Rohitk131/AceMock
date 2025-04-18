@@ -12,14 +12,13 @@ import {
 
 async function Home() {
   const user = await getCurrentUser();
-
   const [userInterviews, allInterview] = await Promise.all([
-    getInterviewsByUserId(user?.id!),
-    getLatestInterviews({ userId: user?.id! }),
+    getInterviewsByUserId(user!.id),
+    getLatestInterviews({ userId: user!.id}),
   ]);
 
-  const hasPastInterviews = userInterviews?.length! > 0;
-  const hasUpcomingInterviews = allInterview?.length! > 0;
+  const hasPastInterviews = userInterviews!.length > 0;
+  const hasUpcomingInterviews = allInterview!.length > 0;
 
   return (
     <>
@@ -31,12 +30,12 @@ async function Home() {
           </p>
 
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+            <Link href="/dashboard/interview">Start an Interview</Link>
           </Button>
         </div>
 
         <Image
-          src="/robot.png"
+          src="/logo.png"
           alt="robo-dude"
           width={400}
           height={400}

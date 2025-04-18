@@ -1,16 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp , getApp , getApps} from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBOlANVDNDo-nCzWwJK2mttpPCakNtA0cE",
-  authDomain: "acemock-4992f.firebaseapp.com",
-  projectId: "acemock-4992f",
-  storageBucket: "acemock-4992f.firebasestorage.app",
-  messagingSenderId: "822591230301",
-  appId: "1:822591230301:web:2a57dc80b60d5f445ad8b4",
-  measurementId: "G-7DCTF6JH74"
+  apiKey: "AIzaSyD1_cVPGldmibxrGU18QB3quGt5XtxVVks",
+  authDomain: "crypto-static-data.firebaseapp.com",
+  databaseURL: "https://crypto-static-data-default-rtdb.firebaseio.com",
+  projectId: "crypto-static-data",
+  storageBucket: "crypto-static-data.firebasestorage.app",
+  messagingSenderId: "605469026274",
+  appId: "1:605469026274:web:5041cc8c540b82230ffbbb",
+  measurementId: "G-Y4JNFVJDE9"
 };
 
 // Initialize Firebase

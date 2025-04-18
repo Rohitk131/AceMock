@@ -185,7 +185,7 @@ export default function HeroGeometric() {
 
           <motion.div custom={3} variants={fadeUpVariants} initial="hidden" animate="visible">
             <div className="flex justify-center space-x-4">
-              <GradientButton className="px-8 py-3  text-lg font-semibold hover:scale-105 transition-transform">
+              <GradientButton onClick={() => window.location.href = "/dashboard"} className="px-8 py-3  text-lg font-semibold hover:scale-105 transition-transform">
                 Start Practicing
               </GradientButton>
               <button className="px-8 py-3 bg-white/[0.05] border border-white/[0.2] text-white rounded-full text-lg font-semibold hover:bg-white/[0.1] transition-colors">

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
-import { interviewer } from "@/constants";
+import { interviewer } from "@/app/constants";
 import { createFeedback } from "@/lib/actions/general.action";
 
 enum CallStatus {
@@ -28,6 +28,7 @@ const Agent = ({
   feedbackId,
   type,
   questions,
+  profileImage
 }: AgentProps) => {
   const router = useRouter();
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
@@ -44,7 +45,7 @@ const Agent = ({
       setCallStatus(CallStatus.FINISHED);
     };
 
-    const onMessage = (message: Message) => {
+    const onMessage = (message: any) => {
       if (message.type === "transcript" && message.transcriptType === "final") {
         const newMessage = { role: message.role, content: message.transcript };
         setMessages((prev) => [...prev, newMessage]);
@@ -61,7 +62,11 @@ const Agent = ({
       setIsSpeaking(false);
     };
 
-    const onError = (error: Error) => {
+    const onError = (error: any) => {
+      if (error?.type === 'no-room') {
+        console.log('✅ Call ended normally, room cleaned up.');
+        return;
+      }
       console.log("Error:", error);
     };
 
@@ -101,13 +106,13 @@ const Agent = ({
         router.push(`/interview/${interviewId}/feedback`);
       } else {
         console.log("Error saving feedback");
-        router.push("/");
+        router.push("/dashboard");
       }
     };
 
     if (callStatus === CallStatus.FINISHED) {
       if (type === "generate") {
-        router.push("/");
+        router.push("/dashboard");
       } else {
         handleGenerateFeedback(messages);
       }
@@ -152,11 +157,12 @@ const Agent = ({
         <div className="card-interviewer">
           <div className="avatar">
             <Image
-              src="/ai-avatar.png"
+              src={"https://media.tenor.com/SWhW6JaABHgAAAAM/ai-avatar.gif"}
               alt="profile-image"
-              width={65}
-              height={54}
-              className="object-cover"
+              width={300}
+              height={300}
+              draggable={false}
+              className="object-fill overflow-hidden rounded-full grayscale"
             />
             {isSpeaking && <span className="animate-speak" />}
           </div>
@@ -167,7 +173,7 @@ const Agent = ({
         <div className="card-border">
           <div className="card-content">
             <Image
-              src="/user-avatar.png"
+              src={profileImage || ""}
               alt="profile-image"
               width={539}
               height={539}

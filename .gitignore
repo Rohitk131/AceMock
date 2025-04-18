@@ -10,6 +10,8 @@
 !.yarn/releases
 !.yarn/versions
 
+crypto-static-data-2362c0194c5c.json
+
 # testing
 /coverage
 

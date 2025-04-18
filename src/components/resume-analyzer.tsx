@@ -96,7 +96,7 @@ export function ResumeAnalyzer() {
           <CardHeader>
             <CardTitle className="text-xl">Upload Your Resume</CardTitle>
             <CardDescription>
-              We'll analyze your resume against ATS systems and provide feedback
+              {"We'll analyze your resume against ATS systems and provide feedback"}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -172,7 +172,7 @@ export function ResumeAnalyzer() {
               <div>
                 <CardTitle className="text-xl">ATS Analysis Results</CardTitle>
                 <CardDescription>
-                  Here's how your resume performs against ATS systems
+                  {"Here's how your resume performs against ATS systems"}
                 </CardDescription>
               </div>
               <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#9248ff]/10 via-[#ff77a5]/10 to-[#ffb340]/10">
